@@ -10,33 +10,37 @@ document.addEventListener("DOMContentLoaded", () => {
     emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
     passwordPattern =
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
-  form.addEventListener("submit", (e) => {
-    const valid = error_validation(e);
-    if (valid == true) {
-      alert("Login Successful");
-    }
-  });
-  register_form.addEventListener("submit", (e) => {
-    const val = error_validation(e);
-    console.log(val);
-    let valid = true;
-    if (name.value.trim() === "") {
-      e.preventDefault();
-      name_error.innerHTML = "Enter a valid name";
-      valid = false;
-      name_error.classList.add("fade-out");
-      setTimeout(() => {
-        name_error.classList.add("hidden");
+  if (form) {
+    form.addEventListener("submit", (e) => {
+      const valid = error_validation(e);
+      if (valid == true) {
+        alert("Login Successful");
+      }
+    });
+  }
+  if (register_form) {
+    register_form.addEventListener("submit", (e) => {
+      const val = error_validation(e);
+      console.log(val);
+      let valid = true;
+      if (name.value.trim() === "") {
+        e.preventDefault();
+        name_error.innerHTML = "Enter a valid name";
+        valid = false;
+        name_error.classList.add("fade-out");
         setTimeout(() => {
-          name_error.innerHTML = "";
-          name_error.classList.remove("hidden", "fade-out");
-        }, 1000);
-      }, 2000);
-    }
-    if (valid && val) {
-      alert("Sign_up Successful");
-    }
-  });
+          name_error.classList.add("hidden");
+          setTimeout(() => {
+            name_error.innerHTML = "";
+            name_error.classList.remove("hidden", "fade-out");
+          }, 1000);
+        }, 2000);
+      }
+      if (valid && val) {
+        alert("Sign_up Successful");
+      }
+    });
+  }
   function error_validation(e) {
     let valid = true;
     if (!emailPattern.test(email.value)) {
