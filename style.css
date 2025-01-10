@@ -13,7 +13,7 @@ body {
 }
 .container {
   width: 500px;
-  background: #fff;
+  background: #eeeeee;
   padding: 25px;
   border-radius: 10px;
 }
@@ -31,18 +31,41 @@ input {
   border: 1px solid #ccc;
   border-radius: 5px;
 }
-span{
-    color: red;
-    font-size: 14px;
-    display: flex;
-    justify-content: center;
+span {
+  color: red;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
 }
 .fade-out {
-    opacity: 1;
-    transition: opacity 1s ease-out;
-  }
-  
-  .fade-out.hidden {
-    opacity: 0;
-  }
-  
+  opacity: 1;
+  transition: opacity 1s ease-out;
+}
+
+.fade-out.hidden {
+  opacity: 0;
+}
+.btn{
+    padding: 10px;
+    background-color: #82eec1;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 150px;
+}
+.submit{
+    padding: 10px;
+    background-color: #82eec1;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100%;
+}
+.otp-verify{
+    display: none;
+}
+.reset_pass{
+    display: none;
+}

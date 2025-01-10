@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
 </head>
 <body>
     <div class="container">
@@ -13,9 +14,15 @@
             <form action="" method="post">
                 <div class="inputBox">
                     <label>Email:</label>
-                    <input type="email" name="email" placeholder="Enter your email">
+                    <input type="email" name="email" id="reset_email" placeholder="Enter your email">
                 </div>
-                <input type="submit" value="Reset Password">
+                <div class="otp-verify">
+                    <label>OTP Verify:</label>
+                    <input type="text" id="otp_inp" placeholder="Enter OTP sent to your email">
+                    <button type="submit" class="btn" id="otp_btn">Verify</button>
+                </div>
+                <button type="submit" class="btn" id="send_otp">Send OTP</button>
+                <div class="reset_pass"><input type="submit" class="btn" id="reset_pass" value="Reset Password"></div>
             </form>
         </div>
     <script src="script.js"></script>
