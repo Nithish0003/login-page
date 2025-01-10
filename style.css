@@ -45,27 +45,27 @@ span {
 .fade-out.hidden {
   opacity: 0;
 }
-.btn{
-    padding: 10px;
-    background-color: #82eec1;
-    outline: none;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    width: 150px;
+.btn {
+  padding: 10px;
+  background-color: #82eec1;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 150px;
 }
-.submit{
-    padding: 10px;
-    background-color: #82eec1;
-    outline: none;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    width: 100%;
+.submit {
+  padding: 10px;
+  background-color: #82eec1;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 100%;
 }
-.otp-verify{
-    display: none;
+.otp-verify {
+  display: none;
 }
-.reset_pass{
-    display: none;
+.reset_pass {
+  display: none;
 }

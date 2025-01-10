@@ -9,11 +9,11 @@ document.addEventListener("DOMContentLoaded", () => {
     name_error = document.getElementById("name_error"),
     email_error = document.getElementById("email_error"),
     pass_error = document.getElementById("pass_error"),
+    sendOtpBtn = document.getElementById("send_otp"),
     reset_email = document.getElementById("reset_email"),
-    otpVerify = document.getElementsByClassName("otp-verify"),
+    otpVerify = document.querySelector(".otp-verify"),
     otp_inp = document.getElementById("otp_inp"),
     otp_btn = document.getElementById("otp_btn"),
-    sendOtpBtn = document.getElementById("send_otp"),
     emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
     passwordPattern =
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
@@ -146,7 +146,7 @@ document.addEventListener("DOMContentLoaded", () => {
       Body: email_body,
     }).then((message) => {
       if (message === "OK") {
-        alert("OTP sent to your email: " + email.value);
+        alert("OTP sent to your email: " + reset_email.value);
         otpVerify.style.display = "flex";
         otp_btn.addEventListener("click", () => {
           if (otp_inp.value === otp_val.toString()) {
