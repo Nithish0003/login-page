@@ -11,7 +11,7 @@
     <div class="container">
       <div class="form">
         <h2>Reset Password</h2>
-        <form action="" method="post">
+        <form id="reset_form" action="" method="post">
           <div class="inputBox">
             <label>Email:</label>
             <input
@@ -19,8 +19,10 @@
               name="email"
               id="reset_email"
               placeholder="Enter your email"
+              required
             />
           </div>
+          <button type="button" class="btn" id="send_otp">Send OTP</button>
           <div class="otp-verify">
             <label>OTP Verify:</label>
             <input
@@ -28,9 +30,8 @@
               id="otp_inp"
               placeholder="Enter OTP sent to your email"
             />
-            <button type="submit" class="btn" id="otp_btn">Verify</button>
+            <button type="button" class="btn" id="otp_btn">Verify</button>
           </div>
-          <button type="submit" class="btn" id="send_otp">Send OTP</button>
           <div class="reset_pass">
             <input
               type="submit"
@@ -42,6 +43,7 @@
         </form>
       </div>
     </div>
+
     <script src="script.js"></script>
   </body>
 </html>

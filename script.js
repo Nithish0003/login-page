@@ -155,6 +155,8 @@ document.addEventListener("DOMContentLoaded", () => {
             alert("Invalid OTP");
           }
         });
+      } else {
+        console.log("OTP not sent");
       }
     });
   }
