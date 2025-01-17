@@ -143,8 +143,8 @@ document.addEventListener("DOMContentLoaded", () => {
     let otp_val = Math.floor(Math.random() * 10000);
     let email_body = `<h2>Your OTP is: </h2>${otp_val}`;
     require("dotenv").config();
-    const serviceID = process.env.SERVICE_ID;
-    const templateID = process.env.TEMPLATE_ID;
+    const serviceID = "service_6p1u7vb";
+    const templateID = "template_owm9ttd";
     let templateParameter = {
       otp: otp_val,
       reply_to: reset_email.value,
