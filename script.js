@@ -11,9 +11,13 @@ document.addEventListener("DOMContentLoaded", () => {
     pass_error = document.getElementById("pass_error"),
     sendOtpBtn = document.getElementById("send_otp"),
     reset_email = document.getElementById("reset_email"),
-    otpVerify = document.querySelector(".otp-verify"),
+    otpVerify = document.getElementById("otp_step"),
     otp_inp = document.getElementById("otp_inp"),
     otp_btn = document.getElementById("otp_btn"),
+    new_pass = document.getElementById("new_pass"),
+    reset_step = document.getElementById("reset_step"),
+    email_step = document.getElementById("email_step"),
+    resetPass = document.querySelector(".reset_pass"),
     emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
     passwordPattern =
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
@@ -138,26 +142,74 @@ document.addEventListener("DOMContentLoaded", () => {
   function sendOTP() {
     let otp_val = Math.floor(Math.random() * 10000);
     let email_body = `<h2>Your OTP is: </h2>${otp_val}`;
-    Email.send({
-      SecureToken: "930828ab-03f8-4696-ab46-0696f00edbf1",
-      To: reset_email.value,
-      From: "luffy4532@gmail.com",
-      Subject: "Email otp using JavaScript",
-      Body: email_body,
-    }).then((message) => {
-      if (message === "OK") {
-        alert("OTP sent to your email: " + reset_email.value);
-        otpVerify.style.display = "flex";
-        otp_btn.addEventListener("click", () => {
-          if (otp_inp.value === otp_val.toString()) {
-            alert("Email address Verified!!");
-          } else {
-            alert("Invalid OTP");
-          }
-        });
-      } else {
-        console.log("OTP not sent");
+    const serviceID = "service_6p1u7vb";
+    const templateID = "template_owm9ttd";
+    let templateParameter = {
+      otp: otp_val,
+      reply_to: reset_email.value,
+    };
+    emailjs.send(serviceID, templateID, templateParameter).then(
+      (message) => {
+        console.log(message);
+        if (message) {
+          alert("OTP sent to your email: " + reset_email.value);
+          email_step.style.display = "none";
+          sendOtpBtn.style.display = "none";
+          otpVerify.style.display = "block";
+          otp_btn.addEventListener("click", () => {
+            if (otp_inp.value === otp_val.toString()) {
+              alert("Email address Verified!!");
+              otpVerify.style.display = "none";
+              reset_step.style.display = "block";
+            } else {
+              alert("Invalid OTP");
+            }
+          });
+        } else {
+          console.log("OTP not sent, response message:", message);
+        }
+      },
+      (err) => {
+        console.log(err);
       }
-    });
+    );
+  }
+  function resetPassword() {
+    const newPassword = new_pass.value;
+    let resetSuccessful = true;
+    if (!passwordPattern.test(newPassword)) {
+      pass_error.innerHTML =
+        "Enter a valid password:1)At least one lowercase letter,2)At least one uppercase letter,3)At least one digit,4)At least one special character (!@#$%^&*),5)Minimum length of 8 characters";
+      pass_error.classList.add("fade-out");
+      setTimeout(() => {
+        pass_error.classList.add("hidden");
+        setTimeout(() => {
+          pass_error.innerHTML = "";
+          pass_error.classList.remove("hidden", "fade-out");
+        }, 1000);
+      }, 4000);
+      return;
+    }
+    localStorage.setItem("pass", newPassword);
+    alert("Password reset successful");
+    reset_form.reset();
+    email_step.style.display = "block";
+    reset_step.style.display = "none";
+    if (resetSuccessful) {
+      window.location.href = "index.html";
+    }
+  }
+  if (resetPass) {
+    resetPass.addEventListener("click", resetPassword);
   }
 });
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker
+    .register("/login page/serviceWorker.js")
+    .then((registration) => {
+      console.log("Service Worker registered with scope:", registration.scope);
+    })
+    .catch((error) => {
+      console.error("Service Worker registration failed:", error);
+    });
+}

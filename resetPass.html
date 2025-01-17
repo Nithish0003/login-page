@@ -5,14 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login Page</title>
     <link rel="stylesheet" href="style.css" />
-    <!-- <script src="https://smtpjs.com/v3/smtp.js"></script> -->
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+    ></script>
+    <script type="text/javascript">
+      (function () {
+        emailjs.init({
+          publicKey: "sPcjBYTDfje6mEr_V",
+        });
+      })();
+    </script>
+    <!-- <script src="https://smtpjs.com/v3/smtp.js" defer></script> -->
   </head>
   <body>
     <div class="container">
       <div class="form">
         <h2>Reset Password</h2>
-        <form id="reset_form" action="" method="post">
-          <div class="inputBox">
+        <form
+          id="reset_form"
+          action="http://127.0.0.1:5500/resetPass"
+          method="post"
+        >
+          <div class="inputBox" id="email_step">
             <label>Email:</label>
             <input
               type="email"
@@ -23,16 +38,25 @@
             />
           </div>
           <button type="button" class="btn" id="send_otp">Send OTP</button>
-          <div class="otp-verify">
+          <div class="otp-verify" id="otp_step" style="display: none">
             <label>OTP Verify:</label>
             <input
               type="text"
               id="otp_inp"
               placeholder="Enter OTP sent to your email"
+              required
             />
             <button type="button" class="btn" id="otp_btn">Verify</button>
           </div>
-          <div class="reset_pass">
+          <div class="reset_pass" id="reset_step" style="display: none">
+            <label>Reset Password:</label>
+            <input
+              type="password"
+              id="new_pass"
+              placeholder="Enter the new password"
+              required
+            />
+            <span id="pass_error"></span>
             <input
               type="submit"
               class="btn"
@@ -43,7 +67,6 @@
         </form>
       </div>
     </div>
-    <script src="https://smtpjs.com/v3/smtp.js" defer></script>
     <script src="script.js" defer></script>
   </body>
 </html>
